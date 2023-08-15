@@ -10,3 +10,9 @@ async def start(message: Message):
             "Привет! Это чат-менеджер, который позволяет включить или отключить автоудаление анимированных стикеров в чате."
             )
 
+@router.message()
+async def check_sticker(message: Message):
+    if message.sticker:
+        if message.sticker.is_video or message.sticker.is_animated:
+            await message.delete()
+
