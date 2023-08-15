@@ -5,6 +5,7 @@ from handlers import base
 
 
 TOKEN = config("BOT_TOKEN")
+animations_allowed = False
 
 # Bot startup function
 async def main():

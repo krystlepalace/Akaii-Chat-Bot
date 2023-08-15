@@ -1,6 +1,7 @@
 from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
+from bot import animations_allowed
 
 router = Router()
 
@@ -12,7 +13,7 @@ async def start(message: Message):
 
 @router.message()
 async def check_sticker(message: Message):
-    if message.sticker:
-        if message.sticker.is_video or message.sticker.is_animated:
+    if not animations_allowed:
+        if message.sticker and (message.sticker.is_video or message.sticker.is_animated):
             await message.delete()
 
