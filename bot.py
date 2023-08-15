@@ -1,0 +1,19 @@
+from decouple import config
+import asyncio
+from aiogram import Bot, Dispatcher
+
+
+TOKEN = config("BOT_TOKEN")
+
+# Bot startup function
+async def main():
+    bot = Bot(token=TOKEN)
+    dp = Dispatcher(bot)
+
+    # start the bot
+    await dp.start_polling()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
