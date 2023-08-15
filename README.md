@@ -1,6 +1,9 @@
 # Akaii Telegram bot
  A simple yet moderator-bot for Telegram chats.
 
+What it does?
+    1. Exists
+
  TODO:
     - Basic functionality
     - Better structure
