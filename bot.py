@@ -1,6 +1,7 @@
 from decouple import config
 import asyncio
 from aiogram import Bot, Dispatcher
+from handlers import base
 
 
 TOKEN = config("BOT_TOKEN")
@@ -9,6 +10,8 @@ TOKEN = config("BOT_TOKEN")
 async def main():
     bot = Bot(token=TOKEN)
     dp = Dispatcher(bot)
+
+    dp.include_routers(base.router)
 
     # start the bot
     await dp.start_polling()
