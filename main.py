@@ -8,9 +8,10 @@ from utils.commands import set_commands
 TOKEN = config("BOT_TOKEN")
 animations_allowed = False
 
+bot = Bot(token=TOKEN)
+
 # Bot startup function
 async def main():
-    bot = Bot(token=TOKEN)
     dp = Dispatcher()
     dp.include_routers(
             base.router, 
