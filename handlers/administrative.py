@@ -55,6 +55,10 @@ async def unmute(message: Message):
             until_date=1
             )
 
+    await message.answer(
+            "Пользователь " + message.reply_to_message.from_user.full_name + " вновь получил право голоса!"
+            )
+
 
 @router.message(Command("unban"))
 async def unban(message: Message):
