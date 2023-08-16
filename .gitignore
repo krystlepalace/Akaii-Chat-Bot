@@ -1,5 +1,5 @@
 .env
 *.pyc
 .gitattributes
-.service
+*.service
 utils/neuro/vosk/model
