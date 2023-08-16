@@ -1,10 +1,22 @@
 from aiogram import Router
 from aiogram.filters import Command
-from aiogram.types import Message
-from keyboards.toggles import toggle_animations 
+from aiogram.types import Message, CallbackQuery
+from keyboards.toggles import anim_inline
 import bot
 
 router = Router()
+
+@router.callback_query()
+async def process_anim_toggle_callback(callback: CallbackQuery):
+    if callback.data == 'anim0':
+        bot.animations_allowed = True
+        await callback.message.answer("Аминированные стикеры разрешены!")
+        await callback.answer()
+    if callback.data == 'anim1':
+        bot.animations_allowed = False
+        await callback.message.answer("Анимированные стикеры запрещены.")
+        await callback.answer()
+
 
 @router.message(Command("start"))
 async def start(message: Message):
@@ -13,11 +25,11 @@ async def start(message: Message):
             )
 
 
-@router.message(Command("allow_animations"))
+@router.message(Command("animations"))
 async def toggle_animated_stickers(message: Message):
     await message.answer(
             "Разрешить анимированные стикеры?",
-            reply_markup=toggle_animations()
+            reply_markup=anim_inline()
             )
 
 
