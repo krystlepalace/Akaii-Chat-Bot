@@ -1,11 +1,13 @@
-from aiogram.types import ReplyKeyboardMarkup
-from aiogram.utils.keyboard import ReplyKeyboardBuilder
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-def toggle_animations() -> ReplyKeyboardMarkup:
-    kb = ReplyKeyboardBuilder()
-    kb.button(text="Разрешить")
-    kb.button(text="Запретить")
-    kb.adjust(2)
+def anim_inline() -> InlineKeyboardMarkup:
+    inline_kb_full = InlineKeyboardMarkup(inline_keyboard=[
+        [
+         InlineKeyboardButton(text="Разрешить", callback_data="anim0"),
+         InlineKeyboardButton(text="Запретить", callback_data="anim1")
+            ]
+        ])
 
-    return kb.as_markup(resize_keyboard=True)
+
+    return inline_kb_full
 
