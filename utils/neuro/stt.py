@@ -2,12 +2,13 @@ import os
 from vosk import KaldiRecognizer, Model
 import subprocess
 import json
+from decouple import config
 
 
 class STT:
     def __init__(
             self,
-            modelpath="/home/capybara/dev/akaii_chatbot/Akaii-Telegram-bot/utils/neuro/vosk/vosk-model-small-ru-0.22/",
+            modelpath=config("MODEL_FULL_PATH"),
             samplerate=16000
             ):
         self.modelpath = modelpath
