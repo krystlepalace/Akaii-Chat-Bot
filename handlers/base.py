@@ -5,7 +5,8 @@ from aiogram.types import Message
 
 router = Router()
 
-alert = "\nВнимание! Чат бот не является администратором данного чата. Чтобы использовать полный функционал бота повысьте его привелегии"
+alert0 = "\nВнимание! Чат бот не является администратором данного чата. Чтобы использовать полный функционал бота повысьте его привелегии"
+alert1 = "Бот не является администратором!"
 
 @router.message(Command("start"))
 async def start(message: Message):
@@ -33,4 +34,15 @@ async def help(message: Message):
                     + "\n/mute - Замутить участника чата" \
                     + "\n\n Приятного пользования!"
             )
+
+
+#@router.message(content_types=["new_chat_members"])
+#async def greeting(message: Message):
+#    await message.answer(
+#            "Добро пожаловать"
+#            )
+
+#@router.message(content_types=["left_chat_member"])
+#async def left(message: Message):
+#    await message.delete()
 
