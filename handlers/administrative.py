@@ -1,6 +1,7 @@
 from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message, ChatPermissions
+from datetime import datetime, timedelta
 
 router = Router()
 
@@ -20,13 +21,38 @@ async def mute(message: Message):
     permissions.can_send_stickers = False
     permissions.can_send_animations = False
     permissions.can_send_games = False
-
-    duration = int(message.text.split()[1])
+    
+    try:
+        duration = int(message.text.split()[1])
+    except:
+        duration = 1
 
     await message.chat.restrict(
             user_id=message.reply_to_message.from_user.id, 
             permissions=permissions,
-            until_date=duration
+            until_date=datetime.now() + timedelta(hours=duration)
+            )
+
+    await message.answer(
+            "Пользователь " + message.reply_to_message.from_user.full_name + " был заглушен на " + str(duration) + " час" \
+                    + "ов" * (int(duration != 1))
+            )
+
+
+@router.message(Command("unmute"))
+async def unmute(message: Message):
+    permissions = ChatPermissions()
+    permissions.can_send_messages = True
+    permissions.can_send_media_messages = True
+    permissions.can_send_stickers = True
+    permissions.can_send_animations = True
+    permissions.can_send_games = True
+    
+
+    await message.chat.restrict(
+            user_id=message.reply_to_message.from_user.id, 
+            permissions=permissions,
+            until_date=1
             )
 
 
