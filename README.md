@@ -7,6 +7,8 @@ What it does?
  TODO:
     - Basic functionality
     - Better structure
+    - Menu with commands
+    - "/help" command
     - Administration functionality
     - Image recognition using AI
     - Speech recognition using AI
