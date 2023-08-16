@@ -9,6 +9,7 @@ What it does?
     - Better structure
     - Menu with commands
     - "/help" command
+    - Database and chats
     - Administration functionality
     - Image recognition using AI
     - Speech recognition using AI
