@@ -36,18 +36,21 @@ async def mute(message: Message):
         try:
             duration = int(message.text.split()[1])
         except IndexError:
-            duration = 1
-        
+            duration = 0
+           
+        until = datetime.now() + timedelta(hours=duration) if duration > 0 else 1
+        alert0 = "Пользователь " + message.reply_to_message.from_user.full_name + " заглушен"
+        alert1 = f" до {str(until)}" if duration > 0 else " навсегда"
+
         try:
             await message.chat.restrict(
                 user_id=message.reply_to_message.from_user.id, 
                 permissions=permissions,
-                until_date=datetime.now() + timedelta(hours=duration)
+                until_date=until
                 )
 
             await message.answer(
-                "Пользователь " + message.reply_to_message.from_user.full_name + " был заглушен на " + str(duration) + " час" \
-                    + "ов" * (int(duration != 1))
+                alert0 + alert1
                 )
         except exceptions.TelegramBadRequest:
             await message.answer("Бот не является администратором!")
