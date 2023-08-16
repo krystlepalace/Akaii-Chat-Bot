@@ -1,7 +1,7 @@
 from decouple import config
 import asyncio
 from aiogram import Bot, Dispatcher
-from handlers import base, callback_query
+from handlers import base, callback_query, administrative, content_filters
 from utils.commands import set_commands
 
 
@@ -12,7 +12,12 @@ animations_allowed = False
 async def main():
     bot = Bot(token=TOKEN)
     dp = Dispatcher()
-    dp.include_routers(base.router, callback_query.router)
+    dp.include_routers(
+            base.router, 
+            callback_query.router,
+            administrative.router,
+            content_filters.router,
+            )
     
     # set commands
     await set_commands(bot)
