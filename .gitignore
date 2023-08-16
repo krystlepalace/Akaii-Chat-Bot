@@ -1,3 +1,4 @@
 .env
 *.pyc
 .gitattributes
+utils/neuro/vosk/model
