@@ -22,7 +22,7 @@ class Chat:
         return self.chat
 
     def update(self):
-        r.hmset(self.chat_id, self.chat)
+        r.hmset(self.id, self.chat)
         self.chat = r.hgetall(self.id)
 
     def set_anim(self, val: bool):
