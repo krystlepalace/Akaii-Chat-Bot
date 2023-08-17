@@ -24,16 +24,16 @@ async def toggle_animated_stickers(message: Message):
 
 @router.message(F.sticker)
 async def check_sticker(message: Message):
-    chat = database.Chat(message.chat.id).get()
-    if int(chat["anim"]):
-        if message.sticker and (message.sticker.is_video or message.sticker.is_animated):
+    chat = database.Chat(message.chat.id)
+    if not int(chat.get()["anim"]):
+        if message.sticker.is_video or message.sticker.is_animated:
             await message.delete()
 
 
 @router.message(F.voice)
 async def voice_to_text(message: Message):
-    chat = database.Chat(message.chat.id).get()
-    if int(chat["voice"]):
+    chat = database.Chat(message.chat.id)
+    if not int(chat.get()["voice"]):
         file_id = message.voice.file_id
 
         file = await main.bot.get_file(file_id)
