@@ -15,9 +15,3 @@ class Database:
 
         return cls.__instance
 
-    def dump(self):
-        print('DUMPING DB...')
-
-    def load(self):
-        print('LOADING DB')
-
