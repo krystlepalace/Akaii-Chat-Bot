@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.types import CallbackQuery
 from aiogram.enums.chat_member_status import ChatMemberStatus
-from models import database
+from models import db_chat
 from filters import group
 
 router = Router()
@@ -11,7 +11,7 @@ async def process_anim_toggle_callback(callback: CallbackQuery):
     if await group.isAdmin(callback.message, callback.from_user.id):
         bot_member = await callback.message.chat.get_member(user_id=callback.message.from_user.id)
         if bot_member.status == ChatMemberStatus.ADMINISTRATOR:
-            chat = database.Chat(callback.message.chat.id)
+            chat = db_chat.Chat(callback.message.chat.id)
 
             if callback.data == 'anim0':
                 chat.set_anim(True)

@@ -1,35 +1,23 @@
-from decouple import config
 import redis
 
-r = redis.Redis(config('REDIS_URL'), charset="utf-8", decode_responses=True)
 
-class Chat:
-    def __init__(self, chat_id):
-        self.chat = r.hgetall(chat_id)
-        self.id = chat_id
+class Database:
+    __instance = None
+    
+    def __init__(self, redis_url):
+        self.r = redis.Redis(redis_url, charset="utf-8", decode_responses=True)
 
-        if not self.chat:
-            r.hmset(
-                chat_id, 
-                {
-                "anim": 1,
-                "voice": 1
-                })
+    def __new__(cls, *args, **kwargs):
+        if cls.__instance is None:
+            cls.__instance = super(Database, cls).__new__(cls)
+        else:
+            cls.__instance.__init__(*args, **kwargs)
 
-            self.chat = r.hgetall(self.id)
+        return cls.__instance
 
-    def get(self):
-        return self.chat
+    def dump(self):
+        print('DUMPING DB...')
 
-    def update(self):
-        r.hmset(self.id, self.chat)
-        self.chat = r.hgetall(self.id)
+    def load(self):
+        print('LOADING DB')
 
-    def set_anim(self, val: bool):
-        self.chat["anim"] = int(val)
-        self.update()
-
-    def set_voice(self, val: bool):
-        self.chat["voice"] = int(val)
-        self.update()
-        

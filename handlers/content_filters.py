@@ -5,7 +5,7 @@ from keyboards.toggles import anim_inline
 from aiogram import F
 from utils.neuro.stt import STT
 from decouple import config
-from models import database
+from models import db_chat
 import os
 from pathlib import Path
 import main
@@ -24,7 +24,7 @@ async def toggle_animated_stickers(message: Message):
 
 @router.message(F.sticker)
 async def check_sticker(message: Message):
-    chat = database.Chat(message.chat.id)
+    chat = db_chat.Chat(message.chat.id)
     if not int(chat.get()["anim"]):
         if message.sticker.is_video or message.sticker.is_animated:
             await message.delete()
@@ -32,8 +32,8 @@ async def check_sticker(message: Message):
 
 @router.message(F.voice)
 async def voice_to_text(message: Message):
-    chat = database.Chat(message.chat.id)
-    if not int(chat.get()["voice"]):
+    chat = db_chat.Chat(message.chat.id)
+    if int(chat.get()["voice"]):
         file_id = message.voice.file_id
 
         file = await main.bot.get_file(file_id)

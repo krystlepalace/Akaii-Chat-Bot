@@ -3,12 +3,18 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from handlers import base, callback_query, administrative, content_filters
 from utils.commands import set_commands
+from models import database
 
+db = database.Database(redis_url=config("REDIS_URL"))
 
 TOKEN = config("BOT_TOKEN")
 animations_allowed = False
 
 bot = Bot(token=TOKEN)
+
+
+async def on_startup():
+    db.load()
 
 # Bot startup function
 async def main():
@@ -22,10 +28,12 @@ async def main():
     
     # set commands
     await set_commands(bot)
-    # start the bot
+    # start the Bot
+    await on_startup()
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
     asyncio.run(main())
+    db.dump()
 
