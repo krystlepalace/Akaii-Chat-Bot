@@ -11,3 +11,15 @@ def anim_inline() -> InlineKeyboardMarkup:
 
     return inline_kb_full
 
+
+def voice_inline() -> InlineKeyboardMarkup:
+    inline_kb_full = InlineKeyboardMarkup(inline_keyboard=[
+        [
+         InlineKeyboardButton(text="Включить", callback_data="voice0"),
+         InlineKeyboardButton(text="Отключить", callback_data="voice1")
+            ]
+        ])
+
+
+    return inline_kb_full
+
