@@ -41,7 +41,7 @@ async def help(message: Message):
 @router.message(F.new_chat_members)
 async def greeting(message: Message):
     await message.answer(
-            "Добро пожаловать" + message.new_chat_members[0].full_name
+            "Добро пожаловать, " + message.new_chat_members[0].full_name
             )
 
 @router.message(F.left_chat_member)
