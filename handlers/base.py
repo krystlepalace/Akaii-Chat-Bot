@@ -1,6 +1,7 @@
 from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
+from aiogram import F
 
 
 router = Router()
@@ -37,13 +38,13 @@ async def help(message: Message):
             )
 
 
-#@router.message(content_types=["new_chat_members"])
-#async def greeting(message: Message):
-#    await message.answer(
-#            "Добро пожаловать"
-#            )
+@router.message(F.new_chat_members)
+async def greeting(message: Message):
+    await message.answer(
+            "Добро пожаловать" + message.new_chat_members[0].full_name
+            )
 
-#@router.message(content_types=["left_chat_member"])
-#async def left(message: Message):
-#    await message.delete()
+@router.message(F.left_chat_member)
+async def left(message: Message):
+    await message.delete()
 
