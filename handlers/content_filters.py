@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message, ContentType
-from keyboards.toggles import anim_inline
+from keyboards.toggles import anim_inline, voice_inline
 from aiogram import F
 from utils.neuro.stt import STT
 from decouple import config
@@ -19,6 +19,14 @@ async def toggle_animated_stickers(message: Message):
     await message.answer(
             "Разрешить анимированные стикеры?",
             reply_markup=anim_inline()
+            )
+
+
+@router.message(Command("voice"))
+async def toggle_voice(message: Message):
+    await message.answer(
+            "Включить перевод ГС?",
+            reply_markup=voice_inline()
             )
 
 
