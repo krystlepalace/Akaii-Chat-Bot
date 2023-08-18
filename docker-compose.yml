@@ -1,8 +1,10 @@
-version: '1'
+version: '3.8'
 
 services:
   redis:
     image: "redis:alpine"
   akaii-bot:
-    build: . # current directory
+    image: fubukedev/akaii-bot
+    stop_signal: SIGINT
+    restart: unless-stopped
 
