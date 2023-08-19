@@ -24,7 +24,7 @@
 7. python main.py
 
 ### Systemd 
-1. Make sure to complete steps 1-4 from basic startup
+1. Make sure to complete steps 1-6 from basic startup
 2. Replace 'akaii-bot.service.example' with just 'akaii-bot.service' and fill the WorkingDirectory and ExecStart variables
 3. Copy 'akaii-bot.service' to '/etc/systemd/system/'
 4. sudo systemctl enable akaii-bot.service and sudo systemctl start akaii-bot.service
