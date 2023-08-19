@@ -34,11 +34,14 @@
 1. Replace 'docker-compose.example.yml' with just 'docker-compose.yml'
 2. Run docker compose up -d
 3. Check container with docker compose ps
-\nAlso you may want to use stronger vosk models to get better speech recognition, so you will need to build new docker image.
-\nTo do this just download any vosk model you want and replace old model with it.
-\nBefore 'docker build' edit .env and fill variables like this:
-\nMODEL_FULL_PATH='/app/utils/neuro/vosk/model'
-\nMEDIA_FULL_PATH='/app/media/'
-n\Then simply run docker build -t akaii-bot:1.0 .
-\nAnd that's it, after build you can run bot in the container with command docker run akaii-bot
+
+ * Also you may want to use stronger vosk models to get better speech recognition, so you will need to build new docker image.
+ * To do this just download any vosk model you want and replace old model with it.
+ * Before 'docker build' edit .env and fill variables like this:
+```
+MODEL_FULL_PATH='/app/utils/neuro/vosk/model'
+MEDIA_FULL_PATH='/app/media/'
+```
+ * Then simply run docker build -t akaii-bot:1.0 .
+ * And that's it, after build you can run bot in the container with command docker run akaii-bot
 
