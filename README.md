@@ -2,7 +2,7 @@
  A simple yet moderator-bot for Telegram chats with speech recognition for translation voice messages to text.
 
 
-<a href="https://hub.docker.com/r/fubukedev/akaii-bot"><img src="https://img.shields.io/badge/Docker%20Hub-akaii--bot-blue"></a>  [<img src="https://img.shields.io/badge/Telegram-%40akaii_chat_bot-blue">](https://t.me/akaii_chat_bot) 
+<a href="https://hub.docker.com/r/fubukedev/akaii-bot"><img src="https://img.shields.io/badge/Docker%20Hub-akaii--bot-blue"></a>  [<img src="https://img.shields.io/badge/Telegram-%40akaii__chat__bot-blue">](https://t.me/akaii_chat_bot) 
 
 
 ## Install 
@@ -34,4 +34,14 @@
 1. Replace 'docker-compose.example.yml' with just 'docker-compose.yml'
 2. Run docker compose up -d
 3. Check container with docker compose ps
+
+ * Also you may want to use stronger vosk models to get better speech recognition, so you will need to build new docker image.
+ * To do this just download any vosk model you want and replace old model with it.
+ * Before 'docker build' edit .env and fill variables like this:
+```
+MODEL_FULL_PATH='/app/utils/neuro/vosk/model'
+MEDIA_FULL_PATH='/app/media/'
+```
+ * Then simply run docker build -t akaii-bot:1.0 .
+ * And that's it, after build you can run bot in the container with command docker run akaii-bot
 
