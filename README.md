@@ -1,5 +1,5 @@
 # Akaii Telegram bot
- A simple yet moderator-bot for Telegram chats with speech recognition for translation voice messages to text.
+ A simple yet moderator-bot for Telegram chats with speech recognition, can translate voice messages to text.
 
 
 <a href="https://hub.docker.com/r/fubukedev/akaii-bot"><img src="https://img.shields.io/badge/Docker%20Hub-akaii--bot-blue"></a>  [<img src="https://img.shields.io/badge/Telegram-%40akaii__chat__bot-blue">](https://t.me/akaii_chat_bot) 
