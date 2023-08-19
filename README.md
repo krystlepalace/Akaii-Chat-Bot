@@ -12,13 +12,16 @@
 2. Linux (if you want to run bot with systemd and have ffmpeg in your PATH)
 3. Systemd (to run bot as service);
 4. Docker (to build your own image with better vosk model or to run bot with docker compose).
+5. Any vosk model you want (and you can get it here https://alphacephei.com/vosk/models)
 
 ### Basic startup
 1. git clone https://github.com/krystlepalace/Akaii-Telegram-bot
 2. cd Akaii-Tekegram-bot && python -m venv .venv
 3. source .venv/bin/activate (or .venv/Scripts/activate on windows)
-4. replace '.env.example' with just '.env' and fill all variables
-5. python main.py
+4. pip install -r requirements.txt
+5. replace '.env.example' with just '.env' and fill all variables
+6. put your vosk model folder in utils/neuro/vosk/ and rename model folder as 'model'
+7. python main.py
 
 ### Systemd 
 1. Make sure to complete steps 1-4 from basic startup
