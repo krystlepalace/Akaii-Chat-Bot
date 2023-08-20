@@ -1,16 +1,16 @@
-from decouple import config
 import asyncio
 from aiogram import Bot, Dispatcher
 from handlers import base, callback_query, administrative, content_filters
 from utils.commands import set_commands
 from models import database
+from config import CONFIG
 
-db = database.Database(redis_url=config("REDIS_URL"))
 
-TOKEN = config("BOT_TOKEN")
+db = database.Database(redis_url=CONFIG.redis_url)
+
 animations_allowed = False
 
-bot = Bot(token=TOKEN)
+bot = Bot(token=CONFIG.bot_token.get_secret_value())
 
 
 # Bot startup function

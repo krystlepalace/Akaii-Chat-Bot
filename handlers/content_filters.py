@@ -4,10 +4,10 @@ from aiogram.types import Message, ContentType
 from keyboards.toggles import anim_inline, voice_inline
 from aiogram import F
 from utils.neuro.stt import STT
-from decouple import config
 from models import db_chat
 import os
 from pathlib import Path
+from config import CONFIG
 import main
 
 
@@ -46,7 +46,7 @@ async def voice_to_text(message: Message):
 
         file = await main.bot.get_file(file_id)
         file_path = file.file_path
-        file_on_disk = Path(config("MEDIA_FULL_PATH") + "audio/", f"{file_id}.ogg")
+        file_on_disk = Path(CONFIG.media_full_path + "audio/", f"{file_id}.ogg")
         await main.bot.download_file(file_path, destination=file_on_disk)
         await message.reply("Аудио получено")
 

@@ -2,13 +2,13 @@ import os
 from vosk import KaldiRecognizer, Model
 import subprocess
 import json
-from decouple import config
+from config import CONFIG
 
 
 class STT:
     def __init__(
             self,
-            modelpath=config("MODEL_FULL_PATH"),
+            modelpath=CONFIG.vosk_model_full_path,
             samplerate=16000
             ):
         self.modelpath = modelpath
