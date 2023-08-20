@@ -7,9 +7,6 @@ from config import CONFIG
 
 
 db = database.Database(redis_url=CONFIG.redis_url)
-
-animations_allowed = False
-
 bot = Bot(token=CONFIG.bot_token.get_secret_value())
 
 
