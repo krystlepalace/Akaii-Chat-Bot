@@ -50,3 +50,9 @@ MEDIA_FULL_PATH='/app/media/'
  * Then simply run docker build -t akaii-bot:1.0 .
  * And that's it, after build you can run bot in the container with command docker run akaii-bot
 
+
+## TODO
+1. Make /settings menu in full inline mode. Settings menu contains 3 keyboards: first lists all chat settings with clickable buttons, other two for toggling each settings.
+2. Any structure improvements from using patterns to re-arranging folders and files.
+3. NSFW recognition with NudeNet
+4. Make 3 docker image versions for each release with different models or make model folder customizable with docker compose
