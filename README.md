@@ -32,8 +32,13 @@
 
 ### Docker + Docker Compose
 1. Replace 'docker-compose.example.yml' with just 'docker-compose.yml'
-2. Run docker compose up -d
-3. Check container with docker compose ps
+2. Edit '.env':
+    * model path in docker container is '/app/utils/neuro/vosk/model'
+    * media path is 'app/media/'
+    * redis is just 'redis'
+    * 'bot_token' is your bot's token
+3. Run 'docker compose up -d'
+4. Check container with docker compose ps
 
  * Also you may want to use stronger vosk models to get better speech recognition, so you will need to build new docker image.
  * To do this just download any vosk model you want and replace old model with it.
