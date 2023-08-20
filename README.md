@@ -53,6 +53,8 @@ MEDIA_FULL_PATH='/app/media/'
 
 ## TODO
 1. Make /settings menu in full inline mode. Settings menu contains 3 keyboards: first lists all chat settings with clickable buttons, other two for toggling each settings.
-2. Any structure improvements from using patterns to re-arranging folders and files.
-3. NSFW recognition with NudeNet
-4. Make 3 docker image versions for each release with different models or make model folder customizable with docker compose
+2. Add middlewares
+3. Make better filters
+4. Any structure improvements from using patterns to re-arranging folders and files.
+5. NSFW recognition with NudeNet
+6. Make 3 docker image versions for each release with different models or make model folder customizable with docker compose
