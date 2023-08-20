@@ -5,12 +5,12 @@
 <a href="https://hub.docker.com/r/fubukedev/akaii-bot"><img src="https://img.shields.io/badge/Docker%20Hub-akaii--bot-blue"></a>  [<img src="https://img.shields.io/badge/Telegram-%40akaii__chat__bot-blue">](https://t.me/akaii_chat_bot) 
 
 # Contents
- 1. <a href="https://github.com/krystlepalace/Akaii-Telegram-bot/blob/main#install">Install</a>
-  * <a href="https://github.com/krystlepalace/Akaii-Telegram-bot/blob/main#prequisites">Prequisites</a> 
-  * <a href="https://github.com/krystlepalace/Akaii-Telegram-bot/blob/main#basic-startup">Basic startup</a>
-  * <a href="https://github.com/krystlepalace/Akaii-Telegram-bot/blob/main#systemd">Systemd</a>
-  * <a href="https://github.com/krystlepalace/Akaii-Telegram-bot/blob/main#docker--docker-compose">Docker + Docker Compose</a>
- 2. <a href="https://github.com/krystlepalace/Akaii-Telegram-bot/blob/main#TODO">Todo</a>
+ 1. <a href="#install">Install</a>
+  * <a href="#prequisites">Prequisites</a> 
+  * <a href="#basic-startup">Basic startup</a>
+  * <a href="#systemd">Systemd</a>
+  * <a href="#docker--docker-compose">Docker + Docker Compose</a>
+ 2. <a href="#TODO">Todo</a>
 
 
 ## Install 
