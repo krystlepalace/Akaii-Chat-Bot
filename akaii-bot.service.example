@@ -4,8 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/capybara/dev/akaii_chatbot/
-ExecStart=/home/capybara/dev/akaii_chatbot/.venv/bin/python3 Akaii-Telegram-bot/main.py
+WorkingDirectory=/home/capybara/dev/akaii_chatbot/Akaii-Telegram-bot/
+ExecStart=/home/capybara/dev/akaii_chatbot/.venv/bin/python main.py
 KillMode=process
 Restart=always
 RestartSec=10
