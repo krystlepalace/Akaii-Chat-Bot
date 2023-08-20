@@ -10,7 +10,7 @@
   * <a href="#basic-startup">Basic startup</a>
   * <a href="#systemd">Systemd</a>
   * <a href="#docker--docker-compose">Docker + Docker Compose</a>
- 2. <a href="#TODO">Todo</a>
+ 2. <a href="#todo">Todo</a>
 
 
 ## Install 
