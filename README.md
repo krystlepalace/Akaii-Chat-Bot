@@ -66,3 +66,4 @@ MEDIA_FULL_PATH='/app/media/'
 4. Any structure improvements (from using patterns to re-arranging folders and files) 
 5. NSFW recognition with NudeNet
 6. Make 3 docker image versions for each release with different models or make model folder customizable with docker compose
+7. Switch to mongodb
