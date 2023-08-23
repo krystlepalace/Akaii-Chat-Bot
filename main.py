@@ -14,12 +14,12 @@ bot = Bot(token=CONFIG.bot_token.get_secret_value())
 async def main():
     dp = Dispatcher()
     dp.include_routers(
-            base.router, 
-            callback_query.router,
-            administrative.router,
-            content_filters.router,
-            )
-    
+        base.router,
+        callback_query.router,
+        administrative.router,
+        content_filters.router,
+    )
+
     # set commands
     await set_commands(bot)
     # start the Bot
@@ -29,4 +29,3 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
     db.r.bgsave()
-

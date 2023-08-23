@@ -8,11 +8,11 @@ class Settings(BaseSettings):
     vosk_model_full_path: Optional[str]
     media_full_path: Optional[str]
     redis_url: Optional[str]
-    
+
     class Config:
-        env_file = './.env'
-        env_file_encoding = 'utf-8'
-        env_nested_delimiter = '__'
+        env_file = "./.env"
+        env_file_encoding = "utf-8"
+        env_nested_delimiter = "__"
+
 
 CONFIG = Settings()
-

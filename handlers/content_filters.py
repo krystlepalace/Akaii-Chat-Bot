@@ -14,20 +14,15 @@ import main
 router = Router()
 stt = STT()
 
+
 @router.message(Command("animations"))
 async def toggle_animated_stickers(message: Message):
-    await message.answer(
-            "Разрешить анимированные стикеры?",
-            reply_markup=anim_inline()
-            )
+    await message.answer("Разрешить анимированные стикеры?", reply_markup=anim_inline())
 
 
 @router.message(Command("voice"))
 async def toggle_voice(message: Message):
-    await message.answer(
-            "Включить перевод ГС?",
-            reply_markup=voice_inline()
-            )
+    await message.answer("Включить перевод ГС?", reply_markup=voice_inline())
 
 
 @router.message(F.sticker)
@@ -56,4 +51,3 @@ async def voice_to_text(message: Message):
             text = "Формат документа не поддерживается"
         os.remove(file_on_disk)
         await message.reply(text + ".")
-

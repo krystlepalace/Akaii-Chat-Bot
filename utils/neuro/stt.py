@@ -7,8 +7,8 @@ from config import CONFIG
 
 class STT:
     def __init__(
-            self,
-            modelpath=CONFIG.vosk_model_full_path,
+            self, 
+            modelpath=CONFIG.vosk_model_full_path, 
             samplerate=16000
             ):
         self.modelpath = modelpath
@@ -24,12 +24,18 @@ class STT:
         if not os.path.exists(audiofile):
             raise Exception("Указан неправильный путь к файлу")
 
-
-        with subprocess.Popen(["ffmpeg", "-loglevel", "quiet", "-i",
-                            audiofile,
-                            "-ar", str(self.samplerate) , "-ac", "1", "-f", "s16le", "-"],
-                            stdout=subprocess.PIPE) as process:
-
+        with subprocess.Popen(
+            [
+                "ffmpeg", 
+                "-loglevel", "quiet",
+                "-i", audiofile,
+                "-ar", str(self.samplerate),
+                "-ac", "1",
+                "-f", "s16le",
+                "-",
+            ],
+            stdout=subprocess.PIPE,
+        ) as process:
             while True:
                 data = process.stdout.read(4000)
                 if len(data) == 0:
@@ -39,9 +45,7 @@ class STT:
                 else:
                     print(self.recognizer.PartialResult())
 
-
         result_json = self.recognizer.FinalResult()
         result_dict = json.loads(result_json)
 
         return result_dict["text"]
-
