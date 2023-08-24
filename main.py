@@ -1,6 +1,7 @@
 import asyncio
 from aiogram import Bot, Dispatcher
-from handlers import base, callback_settings, administrative, callback_toggles, content_filters
+from handlers import base, administrative, content_filters
+from handlers.callbacks import callback_settings, callback_toggles
 from utils.commands import set_commands
 from models import database
 from config import CONFIG

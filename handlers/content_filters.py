@@ -1,7 +1,5 @@
 from aiogram import Router
-from aiogram.filters import Command
 from aiogram.types import Message
-from keyboards.toggles import anim_inline, voice_inline, settings_inline
 from aiogram import F
 from utils.neuro.stt import STT
 from models import db_chat
@@ -13,11 +11,6 @@ import main
 
 router = Router()
 stt = STT()
-
-
-@router.message(Command("settings"))
-async def show_settings(message: Message):
-    await message.answer("Настройки", reply_markup=settings_inline())
 
 
 @router.message(F.sticker)

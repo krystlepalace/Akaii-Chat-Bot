@@ -3,9 +3,19 @@ from aiogram import exceptions
 from aiogram.filters import Command, CommandObject
 from aiogram.types import Message, ChatPermissions
 from datetime import datetime, timedelta
+from keyboards.toggles import settings_inline
+
 from filters import group
 
 router = Router()
+
+
+@router.message(
+        Command("settings"),
+        group.IsAdmin()
+        )
+async def show_settings(message: Message):
+    await message.answer("Настройки", reply_markup=settings_inline())
 
 
 @router.message(
