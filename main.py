@@ -1,6 +1,6 @@
 import asyncio
 from aiogram import Bot, Dispatcher
-from handlers import base, callback_query, administrative, content_filters
+from handlers import base, callback_settings, administrative, callback_toggles, content_filters
 from utils.commands import set_commands
 from models import database
 from config import CONFIG
@@ -15,7 +15,8 @@ async def main():
     dp = Dispatcher()
     dp.include_routers(
         base.router,
-        callback_query.router,
+        callback_settings.router,
+        callback_toggles.router,
         administrative.router,
         content_filters.router,
     )
