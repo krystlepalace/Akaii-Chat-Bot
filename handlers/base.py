@@ -6,8 +6,6 @@ from aiogram import F
 
 router = Router()
 
-alert0 = "\nВнимание! Чат бот не является администратором данного чата. Чтобы использовать полный функционал бота повысьте его привелегии"
-
 
 @router.message(Command("start"))
 async def start(message: Message):
