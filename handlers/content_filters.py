@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.filters import Command
-from aiogram.types import Message, ContentType
-from keyboards.toggles import anim_inline, voice_inline
+from aiogram.types import Message
+from keyboards.toggles import anim_inline, voice_inline, settings_inline
 from aiogram import F
 from utils.neuro.stt import STT
 from models import db_chat
@@ -15,14 +15,9 @@ router = Router()
 stt = STT()
 
 
-@router.message(Command("animations"))
-async def toggle_animated_stickers(message: Message):
-    await message.answer("Разрешить анимированные стикеры?", reply_markup=anim_inline())
-
-
-@router.message(Command("voice"))
-async def toggle_voice(message: Message):
-    await message.answer("Включить перевод ГС?", reply_markup=voice_inline())
+@router.message(Command("settings"))
+async def show_settings(message: Message):
+    await message.answer("Настройки", reply_markup=settings_inline())
 
 
 @router.message(F.sticker)
