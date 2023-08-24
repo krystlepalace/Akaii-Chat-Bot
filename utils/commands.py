@@ -12,12 +12,8 @@ async def set_commands(bot: Bot):
 
     admin_commands = [
             BotCommand(
-                command="animations",
-                description="Включить или отключить анимированные стикеры"
-                ),
-            BotCommand(
-                command="voice",
-                description="Включить или отключить перевод ГС"
+                command="settings",
+                description="Настройки бота"
                 ),
             BotCommand(
                 command="ban",
