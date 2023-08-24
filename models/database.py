@@ -16,3 +16,4 @@ class Database:
             cls.__instance.__init__(*args, **kwargs)
 
         return cls.__instance
+
