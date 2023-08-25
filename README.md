@@ -3,7 +3,7 @@
 
 
 <a href="https://hub.docker.com/r/fubukedev/akaii-bot"><img src="https://img.shields.io/badge/Docker%20Hub-akaii--bot-blue"></a>  [<img src="https://img.shields.io/badge/Telegram-%40akaii__chat__bot-blue">](https://t.me/akaii_chat_bot)
-<a href="https://wakatime.com/badge/github/krystlepalace/Akaii-Telegram-bot.svg" alt="wakatime"></a>
+<a href="https://wakatime.com/badge/github/krystlepalace/Akaii-Telegram-bot"><img src="https://wakatime.com/badge/github/krystlepalace/Akaii-Telegram-bot.svg"></a>
 
 # Contents
  1. <a href="#install">Install</a>
@@ -28,7 +28,14 @@
 2. cd Akaii-Tekegram-bot && python -m venv .venv
 3. source .venv/bin/activate (or .venv/Scripts/activate on windows)
 4. pip install -r requirements.txt
-5. replace '.env.example' with just '.env' and fill all variables
+5. replace '.env.example' with just '.env' and fill all variableif callback.data == "voice0":
+            chat.set_voice(True)
+            await callback.message.edit_text("Перевод голосвых сообщений включен.")
+            await callback.answer()
+        if callback.data == "voice1":
+            chat.set_voice(False)
+            await callback.message.edit_text("Перевод голосовых сообщений отключен.")
+            await callback.answer()
 6. put your vosk model folder in utils/neuro/vosk/ and rename model folder as 'model'
 7. python main.py
 
