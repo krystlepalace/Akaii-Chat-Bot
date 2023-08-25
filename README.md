@@ -2,7 +2,8 @@
  A simple yet moderator-bot for Telegram chats with speech recognition, can translate voice messages to text.
 
 
-<a href="https://hub.docker.com/r/fubukedev/akaii-bot"><img src="https://img.shields.io/badge/Docker%20Hub-akaii--bot-blue"></a>  [<img src="https://img.shields.io/badge/Telegram-%40akaii__chat__bot-blue">](https://t.me/akaii_chat_bot) 
+<a href="https://hub.docker.com/r/fubukedev/akaii-bot"><img src="https://img.shields.io/badge/Docker%20Hub-akaii--bot-blue"></a>  [<img src="https://img.shields.io/badge/Telegram-%40akaii__chat__bot-blue">](https://t.me/akaii_chat_bot)
+<a href="https://wakatime.com/badge/github/krystlepalace/Akaii-Telegram-bot.svg" alt="wakatime"></a>
 
 # Contents
  1. <a href="#install">Install</a>
@@ -61,7 +62,7 @@ MEDIA_FULL_PATH='/app/media/'
 
 ## TODO
 1. Add middlewares
-2. Any structure improvements (from using patterns to re-arranging folders and files) 
+2. Any structure improvements (from using patterns to re-arranging folders and files). For example, i can build dispatcher with factory.
 3. NSFW recognition with NudeNet
 4. Make 3 docker image versions for each release with different models or make model folder customizable with docker compose
 5. Switch to mongodb
