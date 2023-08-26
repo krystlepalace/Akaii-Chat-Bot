@@ -2,6 +2,7 @@ from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram import F
+import main
 
 
 router = Router()
@@ -39,7 +40,15 @@ async def help(message: Message):
 
 @router.message(F.new_chat_members)
 async def greeting(message: Message):
-    await message.answer("Добро пожаловать, " + message.new_chat_members[0].full_name)
+    bot = await main.bot.me()
+    for member in message.new_chat_members:
+        if member.id == bot.id:
+            await main.db.reg_chat(
+                    chat_id=message.chat.id,
+                    anim=True,
+                    voice=True
+                    )
+        await message.answer("Добро пожаловать, " + message.new_chat_members[0].full_name)
 
 
 @router.message(F.left_chat_member)
