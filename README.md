@@ -72,4 +72,3 @@ MEDIA_FULL_PATH='/app/media/'
 2. Any structure improvements (from using patterns to re-arranging folders and files). For example, i can build dispatcher with factory.
 3. NSFW recognition with NudeNet
 4. Make 3 docker image versions for each release with different models or make model folder customizable with docker compose
-5. Switch to mongodb
