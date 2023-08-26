@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     mongodb: SecretStr
     vosk_model_full_path: Optional[str]
     media_full_path: Optional[str]
+    redis_url: Optional[str]
 
     class Config:
         env_file = "./.env"
