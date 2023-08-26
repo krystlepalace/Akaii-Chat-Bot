@@ -7,7 +7,7 @@ from models import database
 from config import CONFIG
 
 
-db = database.Database(redis_url=CONFIG.redis_url)
+db = database.Database(mongodb_url=CONFIG.mongodb.get_secret_value())
 bot = Bot(token=CONFIG.bot_token.get_secret_value())
 
 
@@ -30,4 +30,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-    db.r.bgsave()
+
