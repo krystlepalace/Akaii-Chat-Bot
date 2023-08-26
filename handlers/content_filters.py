@@ -2,7 +2,6 @@ from aiogram import Router
 from aiogram.types import Message
 from aiogram import F
 from utils.neuro.stt import STT
-from models import db_chat
 import os
 from pathlib import Path
 from config import CONFIG
@@ -15,16 +14,16 @@ stt = STT()
 
 @router.message(F.sticker)
 async def check_sticker(message: Message):
-    chat = db_chat.Chat(message.chat.id)
-    if not int(chat.get()["anim"]):
+    chat = await main.db.get_chat(message.chat.id)
+    if not chat.get("anim"):
         if message.sticker.is_video or message.sticker.is_animated:
             await message.delete()
 
 
 @router.message(F.voice)
 async def voice_to_text(message: Message):
-    chat = db_chat.Chat(message.chat.id)
-    if int(chat.get()["voice"]):
+    chat = await main.db.get_chat(message.chat.id)
+    if chat.get("voice"):
         file_id = message.voice.file_id
 
         file = await main.bot.get_file(file_id)
