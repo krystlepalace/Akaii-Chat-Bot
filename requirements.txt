@@ -10,14 +10,17 @@ Babel==2.9.1
 certifi==2023.7.22
 cffi==1.15.1
 charset-normalizer==3.2.0
+dnspython==2.4.2
 frozenlist==1.4.0
 idna==3.4
 magic-filter==1.0.11
+motor==3.3.0
 multidict==6.0.4
 pycparser==2.21
 pydantic==2.1.1
 pydantic-settings==2.0.3
 pydantic_core==2.4.0
+pymongo==4.5.0
 python-decouple==3.8
 python-dotenv==1.0.0
 pytz==2023.3
