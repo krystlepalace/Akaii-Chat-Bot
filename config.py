@@ -5,9 +5,9 @@ from pydantic import SecretStr
 
 class Settings(BaseSettings):
     bot_token: SecretStr
+    mongodb: SecretStr
     vosk_model_full_path: Optional[str]
     media_full_path: Optional[str]
-    redis_url: Optional[str]
 
     class Config:
         env_file = "./.env"
