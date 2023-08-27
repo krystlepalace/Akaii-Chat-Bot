@@ -1,4 +1,5 @@
 import motor.motor_asyncio
+from models.model import Chat
 
 
 class Database:
@@ -20,27 +21,22 @@ class Database:
         return cls.__instance
    
 
-    async def get_chat(self, chat_id):
+    async def get_chat(self, chat_id: int):
         document = await self.collection.find_one({"chat_id": chat_id})
         return document
 
 
-    async def reg_chat(self, chat_id, anim, voice):
-        result = await self.collection.insert_one({
-                "chat_id": chat_id,
-                "anim": anim,
-                "voice": voice
-                })
-        return result
+    async def reg_chat(self, chat: Chat):
+        await self.collection.insert_one(chat.dict())
 
 
-    async def set_anim(self, chat_id, anim):
+    async def set_anim(self, chat_id: int, anim: bool):
         await self.collection.update_one({"chat_id": chat_id}, {"$set":{
             "anim": anim
         }})
 
 
-    async def set_voice(self, chat_id, voice):
+    async def set_voice(self, chat_id: int, voice: bool):
         await self.collection.update_one({"chat_id": chat_id}, {"$set":{
             "voice": voice
         }})
