@@ -2,7 +2,6 @@ from aiogram import Router
 from aiogram.types import CallbackQuery
 from aiogram.enums.chat_member_status import ChatMemberStatus
 from aiogram import F
-from asyncio import sleep
 from filters import group
 import main
 
@@ -23,9 +22,6 @@ async def process_toggle_anim(callback: CallbackQuery):
             await main.db.set_anim(callback.message.chat.id, False)
             await callback.message.edit_text("Анимированные стикеры запрещены.")
             await callback.answer()
-
-        await sleep(10)
-        await callback.message.delete()
     else:
         await callback.message.edit_text("Бот не является администратором.")
 
@@ -44,8 +40,5 @@ async def process_toggle_voice(callback: CallbackQuery):
             await main.db.set_voice(callback.message.chat.id, False)
             await callback.message.edit_text("Перевод голосовых сообщений отключен.")
             await callback.answer()
-
-        await sleep(10)
-        await callback.message.delete()
-    else:
-        await callback.message.edit_text("Бот не является администратором.")
+        else:
+            await callback.message.edit_text("Бот не является администратором.")
