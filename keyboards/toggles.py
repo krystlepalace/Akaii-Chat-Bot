@@ -27,18 +27,19 @@ def voice_inline() -> InlineKeyboardMarkup:
     return inline_kb_full
 
 
-def settings_inline() -> InlineKeyboardMarkup:
+def settings_inline(anim=True, voice=True) -> InlineKeyboardMarkup:
     inline_kb_full = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text="Разрешить анимированные стикеры",
+                    text="Анимированные стикеры: " + ("✅" if anim else "❌"),
                     callback_data="settings_anim",
                 ),
             ],
             [
                 InlineKeyboardButton(
-                    text="Включить перевод ГС в текст", callback_data="settings_voice"
+                    text="Перевод ГС в текст: " + ("✅" if voice else "❌"), 
+                    callback_data="settings_voice"
                 ),
             ],
         ]
