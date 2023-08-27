@@ -4,7 +4,7 @@ from aiogram.filters import Command, CommandObject
 from aiogram.types import Message, ChatPermissions
 from datetime import datetime, timedelta
 from keyboards.toggles import settings_inline
-
+import main
 from filters import group
 
 router = Router()
@@ -15,7 +15,12 @@ router = Router()
         group.IsAdmin()
         )
 async def show_settings(message: Message):
-    await message.answer("Настройки", reply_markup=settings_inline())
+    chat = await main.db.get_chat(message.chat.id)
+    await message.answer("Настройки", 
+                         reply_markup=settings_inline(
+                             anim=chat.get("anim"),
+                             voice=chat.get("voice")
+                             ))
 
 
 @router.message(
