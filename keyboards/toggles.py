@@ -42,6 +42,12 @@ def settings_inline(anim=True, voice=True) -> InlineKeyboardMarkup:
                     callback_data="settings_voice"
                 ),
             ],
+            [
+                InlineKeyboardButton(
+                    text="Закрыть",
+                    callback_data="settings_close"
+                    )
+            ],
         ]
     )
 
