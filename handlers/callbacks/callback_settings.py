@@ -1,9 +1,10 @@
 from aiogram import Router
 from aiogram.types import CallbackQuery
-from keyboards.toggles import voice_inline, anim_inline
+from keyboards.toggles import voice_inline, anim_inline, settings_inline
 from aiogram import F
 from asyncio import sleep
 from filters import group
+import main
 
 router = Router()
 
