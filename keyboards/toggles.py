@@ -1,12 +1,27 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from handlers.callbacks.callback_toggles import ToggleCallback
 
 
 def anim_inline() -> InlineKeyboardMarkup:
     inline_kb_full = InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text="Разрешить", callback_data="anim0"),
-                InlineKeyboardButton(text="Запретить", callback_data="anim1"),
+                InlineKeyboardButton(
+                    text="Разрешить",
+                    callback_data=ToggleCallback(
+                        toggle="anim0",
+                        status=True,
+                        desc="разрешены!",
+                    ).pack(),
+                ),
+                InlineKeyboardButton(
+                    text="Запретить",
+                    callback_data=ToggleCallback(
+                        toggle="anim1",
+                        status=False,
+                        desc="запрещены.",
+                    ).pack(),
+                ),
             ]
         ]
     )
@@ -18,8 +33,22 @@ def voice_inline() -> InlineKeyboardMarkup:
     inline_kb_full = InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text="Включить", callback_data="voice0"),
-                InlineKeyboardButton(text="Отключить", callback_data="voice1"),
+                InlineKeyboardButton(
+                    text="Включить",
+                    callback_data=ToggleCallback(
+                        toggle="voice0",
+                        status=True,
+                        desc="включен.",
+                    ).pack(),
+                ),
+                InlineKeyboardButton(
+                    text="Отключить",
+                    callback_data=ToggleCallback(
+                        toggle="voice1",
+                        status=False,
+                        desc="отключен.",
+                    ).pack(),
+                ),
             ]
         ]
     )
@@ -38,18 +67,22 @@ def settings_inline(anim=True, voice=True) -> InlineKeyboardMarkup:
             ],
             [
                 InlineKeyboardButton(
-                    text="Перевод ГС в текст: " + ("✅" if voice else "❌"), 
-                    callback_data="settings_voice"
+                    text="Перевод ГС в текст: " + ("✅" if voice else "❌"),
+                    callback_data="settings_voice",
                 ),
             ],
-            [
-                InlineKeyboardButton(
-                    text="Закрыть",
-                    callback_data="settings_close"
-                    )
-            ],
+            [InlineKeyboardButton(text="Закрыть", callback_data="settings_close")],
         ]
     )
 
     return inline_kb_full
 
+
+def close() -> InlineKeyboardMarkup:
+    inline_kb_full = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text="Закрыть", callback_data="settings_close")]
+        ]
+    )
+
+    return inline_kb_full
