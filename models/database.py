@@ -15,7 +15,6 @@ class Database:
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
             cls.__instance = super(Database, cls).__new__(cls)
-        else:
             cls.__instance.__init__(*args, **kwargs)
 
         return cls.__instance
