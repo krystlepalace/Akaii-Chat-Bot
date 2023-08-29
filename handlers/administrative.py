@@ -3,11 +3,13 @@ from aiogram import exceptions
 from aiogram.filters import Command, CommandObject
 from aiogram.types import Message, ChatPermissions
 from datetime import datetime, timedelta
+from middlewares import bot_priveleges
 from keyboards.toggles import settings_inline
 import main
 from filters import group
 
 router = Router()
+router.message.middleware(bot_priveleges.BotIsAdminMiddleware())
 
 
 @router.message(
