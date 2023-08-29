@@ -14,6 +14,9 @@ class AntiFloodMiddleware(BaseMiddleware):
                        event: Message,
                        data: Dict[str, Any]
                        ) -> Any:
+        if event.sticker:
+            return await handler(event, data)
+
         user = f'user{event.from_user.id}'
         check_user = await self.storage.redis.get(name=user)
         if check_user:
