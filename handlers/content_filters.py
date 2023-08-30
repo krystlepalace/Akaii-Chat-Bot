@@ -43,15 +43,17 @@ async def voice_to_text(message: Message):
 
 @router.message(F.photo)
 async def check_nudity(message: Message):
-    file_id = message.photo[-1].file_id
-    file = await main.bot.get_file(file_id)
-    file_path = file.file_path
-    file_on_disk = Path(CONFIG.media_full_path + "photo/", f"{file_id}.jpeg")
-    await main.bot.download_file(file_path, destination=file_on_disk)
-    await message.reply("Картинка получена")
+    chat = await main.db.get_chat(message.chat.id)
+    if chat.get("nsfw"):
+        file_id = message.photo[-1].file_id
+        file = await main.bot.get_file(file_id)
+        file_path = file.file_path
+        file_on_disk = Path(CONFIG.media_full_path + "photo/", f"{file_id}.jpeg")
+        await main.bot.download_file(file_path, destination=file_on_disk)
+        await message.reply("Картинка получена")
 
-    if await check(file_on_disk.__str__()):
-        await message.delete()
+        if await check(file_on_disk.__str__()):
+            await message.delete()
 
-    os.remove(file_on_disk)
+        os.remove(file_on_disk)
     
