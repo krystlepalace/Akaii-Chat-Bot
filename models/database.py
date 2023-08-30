@@ -40,3 +40,9 @@ class Database:
             "voice": voice
         }})
 
+
+    async def set_nsfw(self, chat_id: int, nsfw: bool):
+        await self.collection.update_one({"chat_id": chat_id}, {"$set":{
+            "nsfw": nsfw
+            }})
+
