@@ -52,4 +52,6 @@ async def check_nudity(message: Message):
 
     if await check(file_on_disk.__str__()):
         await message.delete()
+
+    os.remove(file_on_disk)
     
