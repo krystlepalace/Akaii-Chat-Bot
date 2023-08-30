@@ -68,6 +68,4 @@ MEDIA_FULL_PATH='/app/media/'
 
 
 ## TODO
-1. Any structure improvements (from using patterns to re-arranging folders and files). For example, i can build dispatcher with factory.
-2. Make 3 docker image versions for each release with different models or make model folder customizable with docker compose
-3. Make localization using i18n (for en, ru and ukrainian)
+* Localization using i18n (for en, ru and ukrainian)
