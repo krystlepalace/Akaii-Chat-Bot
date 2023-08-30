@@ -21,7 +21,8 @@ async def show_settings(message: Message):
     await message.answer("Настройки", 
                          reply_markup=settings_inline(
                              anim=chat.get("anim"),
-                             voice=chat.get("voice")
+                             voice=chat.get("voice"),
+                             nsfw=chat.get("nsfw")
                              ))
 
 
