@@ -14,7 +14,7 @@ class AntiFloodMiddleware(BaseMiddleware):
                        event: Message,
                        data: Dict[str, Any]
                        ) -> Any:
-        if event.sticker:
+        if event.sticker or event.photo:
             return await handler(event, data)
 
         user = f'user{event.from_user.id}'
