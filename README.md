@@ -22,22 +22,17 @@
 3. Systemd (to run bot as service);
 4. Docker (to build your own image with better vosk model or to run bot with docker compose).
 5. Any vosk model you want (and you can get it here https://alphacephei.com/vosk/models)
+6. Model for NudeNet (https://github.com/notAI-tech/NudeNet/releases/download/v0/classifier_model.onnx) 
 
 ### Basic startup
 1. git clone https://github.com/krystlepalace/Akaii-Telegram-bot
 2. cd Akaii-Tekegram-bot && python -m venv .venv
 3. source .venv/bin/activate (or .venv/Scripts/activate on windows)
 4. pip install -r requirements.txt
-5. replace '.env.example' with just '.env' and fill all variableif callback.data == "voice0":
-            chat.set_voice(True)
-            await callback.message.edit_text("Перевод голосвых сообщений включен.")
-            await callback.answer()
-        if callback.data == "voice1":
-            chat.set_voice(False)
-            await callback.message.edit_text("Перевод голосовых сообщений отключен.")
-            await callback.answer()
+5. replace '.env.example' with just '.env' and fill all the variables. 
 6. put your vosk model folder in utils/neuro/vosk/ and rename model folder as 'model'
-7. python main.py
+7. put nudenet model in $HOME/.Nudenet/
+8. python main.py
 
 ### Systemd 
 1. Make sure to complete steps 1-6 from basic startup
