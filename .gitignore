@@ -4,3 +4,4 @@
 *.service
 utils/neuro/vosk/model
 media/
+/.venv
