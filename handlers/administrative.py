@@ -30,18 +30,18 @@ async def show_settings(message: Message):
         Command("ban"), 
         group.IsAdmin()
         )
-async def ban(message: Message):
-    try:
-        await message.chat.ban(
-                user_id=message.reply_to_message.from_user.id, until_date=0
+async def ban(message: Message, command: CommandObject):
+    duration = int(command.args) if command.args else 0
+    until = datetime.now() + timedelta(hours=duration) if duration else 1
+    await message.chat.ban(
+                user_id=message.reply_to_message.from_user.id, until_date=until
             )
-        await message.answer(
+    await message.answer(
                 "Пользователь "
                 + message.reply_to_message.from_user.full_name
                 + " был заблокирован"
+                + (f" до {str(until)}" if duration else " навсегда")
             )
-    except exceptions.TelegramBadRequest:
-        await message.answer("Бот не является администратором!")
 
 
 @router.message(
@@ -64,16 +64,13 @@ async def mute(message: Message, command: CommandObject):
         )
     alert1 = f" до {str(until)}" if duration > 0 else " навсегда"
 
-    try:
-        await message.chat.restrict(
+    await message.chat.restrict(
                 user_id=message.reply_to_message.from_user.id,
                 permissions=permissions,
                 until_date=until,
             )
 
-        await message.answer(alert0 + alert1)
-    except exceptions.TelegramBadRequest:
-        await message.answer("Бот не является администратором!")
+    await message.answer(alert0 + alert1)
 
 
 @router.message(
@@ -88,20 +85,17 @@ async def unmute(message: Message):
     permissions.can_send_animations = True
     permissions.can_send_games = True
 
-    try:
-        await message.chat.restrict(
+    await message.chat.restrict(
                 user_id=message.reply_to_message.from_user.id,
                 permissions=permissions,
                 until_date=1,
             )
 
-        await message.answer(
+    await message.answer(
                 "Пользователь "
                 + message.reply_to_message.from_user.full_name
                 + " вновь получил право голоса!"
             )
-    except exceptions.TelegramBadRequest:
-        await message.answer("Бот не является администратором")
 
 
 @router.message(
@@ -109,13 +103,10 @@ async def unmute(message: Message):
         group.IsAdmin()
         )
 async def unban(message: Message):
-    try:
-        await message.chat.unban(user_id=message.reply_to_message.from_user.id)
-        await message.answer(
+    await message.chat.unban(user_id=message.reply_to_message.from_user.id)
+    await message.answer(
                 "Пользователь "
                 + message.reply_to_message.from_user.full_name
                 + " был разблокирован"
             )
-    except exceptions.TelegramBadRequest:
-        await message.answer("Бот не является администратором!")
 
