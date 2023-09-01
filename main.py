@@ -1,7 +1,7 @@
 import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.redis import RedisStorage
-from middlewares.throttling import AntiFloodMiddleware
+from middlewares.throttling import AntiFloodMiddleware, ThrottlingMiddleware
 from handlers import base, administrative, content_filters
 from handlers.callbacks import callback_settings, callback_toggles
 from utils.commands import set_commands
@@ -27,8 +27,9 @@ async def main():
     )
 
     # Setup middlewares
+    dp.message.middleware.register(ThrottlingMiddleware(storage=storage))
     dp.message.middleware.register(AntiFloodMiddleware(storage=storage))
-
+    
     # set commands
     await set_commands(bot)
     # start the Bot
