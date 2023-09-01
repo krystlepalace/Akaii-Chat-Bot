@@ -6,4 +6,5 @@ class Chat(BaseModel):
     anim: bool
     voice: bool
     nsfw: bool
+    antiflood: bool
 
