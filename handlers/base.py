@@ -50,7 +50,8 @@ async def greeting(message: Message):
                         chat_id=message.chat.id,
                         anim=True,
                         voice=True,
-                        nsfw=True
+                        nsfw=True,
+                        antiflood=False
                         )
                     )
         await message.answer("Добро пожаловать, " + member.full_name)
