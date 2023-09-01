@@ -46,3 +46,9 @@ class Database:
             "nsfw": nsfw
             }})
 
+
+    async def set_antiflood(self, chat_id: int, antiflood: bool):
+        await self.collection.update_one({"chat_id": chat_id}, {"$set":{
+            "antiflood": antiflood
+            }})
+
