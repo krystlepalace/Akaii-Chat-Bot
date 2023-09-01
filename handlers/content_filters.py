@@ -45,7 +45,7 @@ async def voice_to_text(message: Message, chat):
 
 @router.message(F.photo)
 async def check_nudity(message: Message, chat):
-    if chat and chat.get("nsfw"):
+    if not (chat and chat.get("nsfw")):
         file_id = message.photo[-1].file_id
         file = await main.bot.get_file(file_id)
         file_path = file.file_path
