@@ -50,3 +50,14 @@ async def process_toggle_nsfw(callback: CallbackQuery, callback_data: ToggleCall
         )
     await callback.answer()
 
+
+@router.callback_query(
+        ToggleCallback.filter(F.toggle.startswith("antiflood")), group.IsAdminCallback()
+        )
+async def processs_toggle_antiflood(callback: CallbackQuery, callback_data: ToggleCallback):
+    await main.db.set_antiflood(callback.message.chat.id, callback_data.status)
+    await callback.message.edit_text(
+            "Anti-Flood " + callback_data.desc, reply_markup=keyboards.toggles.close()
+            )
+    await callback.answer()
+
