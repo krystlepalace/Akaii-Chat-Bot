@@ -1,5 +1,9 @@
 from aiogram.filters import callback_data
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton,
+    inline_keyboard_button,
+)
 from handlers.callbacks.callback_toggles import ToggleCallback
 
 
@@ -84,7 +88,38 @@ def nsfw_inline() -> InlineKeyboardMarkup:
     return inline_kb_full
 
 
-def settings_inline(anim=True, voice=True, nsfw=True) -> InlineKeyboardMarkup:
+def antiflood_inline() -> InlineKeyboardMarkup:
+    inline_kb_full = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="Разрешить",
+                    callback_data=ToggleCallback(
+                        toggle="antiflood0", 
+                        status=True, 
+                        desc="включен."
+                    ).pack(),
+                ),
+                InlineKeyboardButton(
+                    text="Запретить",
+                    callback_data=ToggleCallback(
+                        toggle="antiflood1", 
+                        status=False, 
+                        desc="выключен."
+                    ).pack(),
+                ),
+            ]
+        ]
+    )
+
+    return inline_kb_full
+
+
+def settings_inline(anim=True, 
+                    voice=True, 
+                    nsfw=True, 
+                    antiflood=False
+                    ) -> InlineKeyboardMarkup:
     inline_kb_full = InlineKeyboardMarkup(
         inline_keyboard=[
             [
@@ -104,6 +139,12 @@ def settings_inline(anim=True, voice=True, nsfw=True) -> InlineKeyboardMarkup:
                     text="NSFW: " + ("✅" if nsfw else "❌"),
                     callback_data="settings_nsfw",
                 )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="Anti-Flood: " + ("✅" if antiflood else "❌"),
+                    callback_data="settings_antiflood",
+                ),
             ],
             [InlineKeyboardButton(text="Закрыть", callback_data="settings_close")],
         ]
