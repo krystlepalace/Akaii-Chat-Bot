@@ -5,6 +5,8 @@ from aiogram.types import ChatPermissions, Message, TelegramObject
 import main
 from datetime import datetime, timedelta
 
+from utils.neuro.nudenet.nude_checker import check
+
 
 class AntiFloodMiddleware(BaseMiddleware):
     def __init__(self, storage: RedisStorage):
@@ -21,25 +23,18 @@ class AntiFloodMiddleware(BaseMiddleware):
             user = f"user{event.from_user.id}_flood"
             check_user = await self.storage.redis.get(name=user)
             if check_user:
-                if int(check_user.decode()) < 7:
+                check_user = int(check_user.decode())
+                if check_user < 7:
                     await self.storage.redis.set(
-                        name=user, value=int(check_user.decode()) + 1, ex=4
+                        name=user, value=check_user + 1, ex=4
                     )
-                elif int(check_user.decode()) > 7:
+                elif check_user > 7:
                     return
                 else:
                     permissions = ChatPermissions()
                     permissions.can_send_messages = False
-                    permissions.can_send_media_messages = False
-                    permissions.can_send_stickers = False
-                    permissions.can_send_animations = False
-                    permissions.can_send_games = False
-
-                    until = datetime.now() + timedelta(hours=1) 
-                    alert0 = (
-                            "Пользователь " + event.from_user.full_name + " заглушен"
-                             )
-                    alert1 = f" до {str(until)}" 
+                    
+                    until = datetime.now() + timedelta(hours=1)  
 
                     await event.chat.restrict(
                         user_id=event.from_user.id,
@@ -47,7 +42,7 @@ class AntiFloodMiddleware(BaseMiddleware):
                         until_date=until,
                                                 )
 
-                    await event.reply(alert0 + alert1)
+                    await event.reply("Пользователь" + event.from_user.full_name + "был заглушен за флуд.")
             else:
                 await self.storage.redis.set(name=user, value=1, ex=4)
         return await handler(event, data)
