@@ -1,7 +1,7 @@
 from aiogram import Router
 from aiogram.filters.callback_data import CallbackData
 from aiogram.types import CallbackQuery
-from keyboards import toggles
+from keyboards.toggles import anim_inline, voice_inline, nsfw_inline, antiflood_inline
 from aiogram import F
 from filters import group
 
@@ -13,11 +13,12 @@ class SettingsCallback(CallbackData, prefix="settings"):
     parameter: str
     desc: str
 
+
 settings_keyboards = {
-    "anim": toggles.anim_inline(),
-    "voice": toggles.voice_inline(),
-    "nsfw": toggles.nsfw_inline(),
-    "antiflood": toggles.antiflood_inline(),
+    "anim": anim_inline(),
+    "voice": voice_inline(),
+    "nsfw": nsfw_inline(),
+    "antiflood": antiflood_inline(),
     "close": None,
 }
 
@@ -26,7 +27,9 @@ settings_keyboards = {
     SettingsCallback.filter(F.data.startswith(("anim", "nsfw"))),
     group.IsAdminCallback(),
 )
-async def process_anim_callback(callback: CallbackQuery, callback_data: CallbackData):
+async def process_parameters0_callback(
+    callback: CallbackQuery, callback_data: CallbackData
+):
     await callback.message.edit_text(
         text=f"Разрешить {callback_data.desc}?",
         reply_markup=settings_keyboards[callback_data.parameter],
@@ -37,7 +40,9 @@ async def process_anim_callback(callback: CallbackQuery, callback_data: Callback
     SettingsCallback.filter(F.data.startswith(("voice", "antiflood"))),
     group.IsAdminCallback(),
 )
-async def process_anim_callback(callback: CallbackQuery, callback_data: CallbackData):
+async def process_parameters1_callback(
+    callback: CallbackQuery, callback_data: CallbackData
+):
     await callback.message.edit_text(
         text=f"Включить {callback_data.desc}?",
         reply_markup=settings_keyboards[callback_data.parameter],
@@ -48,7 +53,7 @@ async def process_anim_callback(callback: CallbackQuery, callback_data: Callback
     SettingsCallback.filter(F.data.startswith("close")),
     group.IsAdminCallback(),
 )
-async def process_anim_callback(callback: CallbackQuery, callback_data: CallbackData):
+async def process_close_callback(callback: CallbackQuery, callback_data: CallbackData):
     await callback.message.edit_text(
         text=f"{callback_data.desc}",
         reply_markup=settings_keyboards[callback_data.parameter],
