@@ -1,6 +1,7 @@
 from aiogram import Router
+from aiogram.filters.callback_data import CallbackData
 from aiogram.types import CallbackQuery
-from keyboards.toggles import nsfw_inline, voice_inline, anim_inline, antiflood_inline
+from keyboards import toggles
 from aiogram import F
 from filters import group
 
@@ -8,22 +9,48 @@ from filters import group
 router = Router()
 
 
-@router.callback_query(F.data.startswith("settings_"), group.IsAdminCallback())
-async def proccess_settings_menu(callback: CallbackQuery):
-    if callback.data == "settings_anim":
-        await callback.message.edit_text("Разрешить анимированные стикеры?",
-                                         reply_markup=anim_inline()) 
-    if callback.data == "settings_voice":
-        await callback.message.edit_text("Разрешить перевод ГС в текст?", 
-                                         reply_markup=voice_inline())
-    if callback.data == "settings_nsfw":
-        await callback.message.edit_text("Разрешить NSFW?",
-                                         reply_markup=nsfw_inline())
-    if callback.data == "settings_antiflood":
-        await callback.message.edit_text("Включить Anti-Flood?",
-                                         reply_markup=antiflood_inline())
-    if callback.data == "settings_close":
-        await callback.message.edit_text("Настройки закрыты.",
-                                         reply_markup=None)
-    await callback.answer()
+settings_keyboards = {
+    "anim": toggles.anim_inline(),
+    "voice": toggles.voice_inline(),
+    "nsfw": toggles.nsfw_inline(),
+    "antiflood": toggles.antiflood_inline(),
+    "close": None,
+}
 
+
+class SettingsCallback(CallbackData, prefix="settings"):
+    parameter: str
+    desc: str
+
+
+@router.callback_query(
+    SettingsCallback.filter(F.data.startswith(("anim", "nsfw"))),
+    group.IsAdminCallback(),
+)
+async def process_anim_callback(callback: CallbackQuery, callback_data: CallbackData):
+    await callback.message.edit_text(
+        text=f"Разрешить {callback_data.desc}?",
+        reply_markup=settings_keyboards[callback_data.parameter],
+    )
+
+
+@router.callback_query(
+    SettingsCallback.filter(F.data.startswith(("voice", "antiflood"))),
+    group.IsAdminCallback(),
+)
+async def process_anim_callback(callback: CallbackQuery, callback_data: CallbackData):
+    await callback.message.edit_text(
+        text=f"Включить {callback_data.desc}?",
+        reply_markup=settings_keyboards[callback_data.parameter],
+    )
+
+
+@router.callback_query(
+    SettingsCallback.filter(F.data.startswith("close")),
+    group.IsAdminCallback(),
+)
+async def process_anim_callback(callback: CallbackQuery, callback_data: CallbackData):
+    await callback.message.edit_text(
+        text=f"{callback_data.desc}",
+        reply_markup=settings_keyboards[callback_data.parameter],
+    )
