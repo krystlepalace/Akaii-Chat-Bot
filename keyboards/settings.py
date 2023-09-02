@@ -59,7 +59,14 @@ def settings_inline(
 def close() -> InlineKeyboardMarkup:
     inline_kb_full = InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="Закрыть", callback_data="settings_close")]
+            [
+                InlineKeyboardButton(
+                    text="Закрыть",
+                    callback_data=SettingsCallback(
+                        parameter="close", desc="Настройки закрыты"
+                    ).pack(),
+                )
+            ]
         ]
     )
 
