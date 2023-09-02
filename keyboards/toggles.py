@@ -93,7 +93,7 @@ def antiflood_inline() -> InlineKeyboardMarkup:
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text="Разрешить",
+                    text="Включить",
                     callback_data=ToggleCallback(
                         toggle="antiflood0", 
                         status=True, 
@@ -101,7 +101,7 @@ def antiflood_inline() -> InlineKeyboardMarkup:
                     ).pack(),
                 ),
                 InlineKeyboardButton(
-                    text="Запретить",
+                    text="Выключить",
                     callback_data=ToggleCallback(
                         toggle="antiflood1", 
                         status=False, 
