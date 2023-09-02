@@ -24,7 +24,7 @@ settings_keyboards = {
 
 
 @router.callback_query(
-    SettingsCallback.filter(F.data.startswith(("anim", "nsfw"))),
+    SettingsCallback.filter(F.parameter.startswith(("anim", "nsfw"))),
     group.IsAdminCallback(),
 )
 async def process_parameters0_callback(
@@ -34,10 +34,11 @@ async def process_parameters0_callback(
         text=f"Разрешить {callback_data.desc}?",
         reply_markup=settings_keyboards[callback_data.parameter],
     )
+    await callback.answer()
 
 
 @router.callback_query(
-    SettingsCallback.filter(F.data.startswith(("voice", "antiflood"))),
+    SettingsCallback.filter(F.parameter.startswith(("voice", "antiflood"))),
     group.IsAdminCallback(),
 )
 async def process_parameters1_callback(
@@ -47,10 +48,11 @@ async def process_parameters1_callback(
         text=f"Включить {callback_data.desc}?",
         reply_markup=settings_keyboards[callback_data.parameter],
     )
+    await callback.answer()
 
 
 @router.callback_query(
-    SettingsCallback.filter(F.data.startswith("close")),
+    SettingsCallback.filter(F.parameter.startswith("close")),
     group.IsAdminCallback(),
 )
 async def process_close_callback(callback: CallbackQuery, callback_data: CallbackData):
@@ -58,3 +60,4 @@ async def process_close_callback(callback: CallbackQuery, callback_data: Callbac
         text=f"{callback_data.desc}",
         reply_markup=settings_keyboards[callback_data.parameter],
     )
+    await callback.answer()
