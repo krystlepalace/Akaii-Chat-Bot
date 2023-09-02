@@ -9,6 +9,10 @@ from filters import group
 router = Router()
 
 
+class SettingsCallback(CallbackData, prefix="settings"):
+    parameter: str
+    desc: str
+
 settings_keyboards = {
     "anim": toggles.anim_inline(),
     "voice": toggles.voice_inline(),
@@ -16,11 +20,6 @@ settings_keyboards = {
     "antiflood": toggles.antiflood_inline(),
     "close": None,
 }
-
-
-class SettingsCallback(CallbackData, prefix="settings"):
-    parameter: str
-    desc: str
 
 
 @router.callback_query(

@@ -2,9 +2,11 @@ from aiogram.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
 )
-from handlers.callbacks.callback_settings import SettingsCallback
-from handlers.callbacks.callback_toggles import ToggleCallback
+from handlers.callbacks import callback_toggles, callback_settings
 
+
+ToggleCallback = callback_toggles.ToggleCallback
+SettingsCallback = callback_settings.SettingsCallback
 
 def anim_inline() -> InlineKeyboardMarkup:
     inline_kb_full = InlineKeyboardMarkup(
