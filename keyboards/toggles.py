@@ -1,9 +1,8 @@
-from aiogram.filters import callback_data
 from aiogram.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
-    inline_keyboard_button,
 )
+from handlers.callbacks.callback_settings import SettingsCallback
 from handlers.callbacks.callback_toggles import ToggleCallback
 
 
@@ -125,7 +124,11 @@ def settings_inline(anim=True,
             [
                 InlineKeyboardButton(
                     text="Анимированные стикеры: " + ("✅" if anim else "❌"),
-                    callback_data="settings_anim",
+                    callback_data=SettingsCallback(
+                        parameter="anim",
+                        keyboard="anim_kb",
+                        desc="анимированные стикеры"
+                        ).pack(),
                 ),
             ],
             [
