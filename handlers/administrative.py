@@ -79,12 +79,17 @@ async def mute(message: Message, command: CommandObject):
         group.IsAdmin()
         )
 async def unmute(message: Message):
-    permissions = ChatPermissions()
-    permissions.can_send_messages = True
-    permissions.can_send_media_messages = True
-    permissions.can_send_stickers = True
-    permissions.can_send_animations = True
-    permissions.can_send_games = True
+    permissions = ChatPermissions(
+            can_send_polls=True,
+            can_send_audios=True,
+            can_send_photos=True,
+            can_send_videos=True,
+            can_send_messages=True,
+            can_send_documents=True,
+            can_send_video_notes=True,
+            can_send_voice_notes=True,
+            can_send_other_messages=True
+            ) 
 
     await message.chat.restrict(
                 user_id=message.reply_to_message.from_user.id,
