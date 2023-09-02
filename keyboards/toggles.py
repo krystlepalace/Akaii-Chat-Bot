@@ -2,11 +2,8 @@ from aiogram.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
 )
-from handlers.callbacks import callback_toggles, callback_settings
+from handlers.callbacks import callback_toggles 
 
-
-ToggleCallback = callback_toggles.ToggleCallback
-SettingsCallback = callback_settings.SettingsCallback
 
 def anim_inline() -> InlineKeyboardMarkup:
     inline_kb_full = InlineKeyboardMarkup(
@@ -14,7 +11,7 @@ def anim_inline() -> InlineKeyboardMarkup:
             [
                 InlineKeyboardButton(
                     text="Разрешить",
-                    callback_data=ToggleCallback(
+                    callback_data=callback_toggles.ToggleCallback(
                         toggle="anim0",
                         status=True,
                         desc="разрешены!",
@@ -22,7 +19,7 @@ def anim_inline() -> InlineKeyboardMarkup:
                 ),
                 InlineKeyboardButton(
                     text="Запретить",
-                    callback_data=ToggleCallback(
+                    callback_data=callback_toggles.ToggleCallback(
                         toggle="anim1",
                         status=False,
                         desc="запрещены.",
@@ -41,7 +38,7 @@ def voice_inline() -> InlineKeyboardMarkup:
             [
                 InlineKeyboardButton(
                     text="Включить",
-                    callback_data=ToggleCallback(
+                    callback_data=callback_toggles.ToggleCallback(
                         toggle="voice0",
                         status=True,
                         desc="включен.",
@@ -49,7 +46,7 @@ def voice_inline() -> InlineKeyboardMarkup:
                 ),
                 InlineKeyboardButton(
                     text="Отключить",
-                    callback_data=ToggleCallback(
+                    callback_data=callback_toggles.ToggleCallback(
                         toggle="voice1",
                         status=False,
                         desc="отключен.",
@@ -68,7 +65,7 @@ def nsfw_inline() -> InlineKeyboardMarkup:
             [
                 InlineKeyboardButton(
                     text="Разрешить",
-                    callback_data=ToggleCallback(
+                    callback_data=callback_toggles.ToggleCallback(
                         toggle="nsfw0",
                         status=True,
                         desc="разрешено.",
@@ -76,7 +73,7 @@ def nsfw_inline() -> InlineKeyboardMarkup:
                 ),
                 InlineKeyboardButton(
                     text="Запретить",
-                    callback_data=ToggleCallback(
+                    callback_data=callback_toggles.ToggleCallback(
                         toggle="nsfw1",
                         status=False,
                         desc="запрещено.",
@@ -95,13 +92,13 @@ def antiflood_inline() -> InlineKeyboardMarkup:
             [
                 InlineKeyboardButton(
                     text="Включить",
-                    callback_data=ToggleCallback(
+                    callback_data=callback_toggles.ToggleCallback(
                         toggle="antiflood0", status=True, desc="включен."
                     ).pack(),
                 ),
                 InlineKeyboardButton(
                     text="Выключить",
-                    callback_data=ToggleCallback(
+                    callback_data=callback_toggles.ToggleCallback(
                         toggle="antiflood1", status=False, desc="выключен."
                     ).pack(),
                 ),

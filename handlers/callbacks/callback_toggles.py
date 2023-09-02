@@ -5,7 +5,7 @@ from aiogram.filters.callback_data import CallbackData
 from aiogram import F
 from middlewares import bot_priveleges
 from filters import group
-from keyboards.settings import close
+from keyboards import settings
 import main
 
 router = Router()
@@ -24,7 +24,7 @@ class ToggleCallback(CallbackData, prefix="tgl"):
 async def process_toggle_anim(callback: CallbackQuery, callback_data: ToggleCallback):
     await main.db.set_anim(callback.message.chat.id, callback_data.status)
     await callback.message.edit_text(
-            "Анимированные стикеры " + callback_data.desc, reply_markup=close()
+            "Анимированные стикеры " + callback_data.desc, reply_markup=settings.close()
         )
     await callback.answer()
 
@@ -35,7 +35,7 @@ async def process_toggle_anim(callback: CallbackQuery, callback_data: ToggleCall
 async def process_toggle_voice(callback: CallbackQuery, callback_data: ToggleCallback): 
     await main.db.set_voice(callback.message.chat.id, callback_data.status)
     await callback.message.edit_text(
-            "Перевод ГС в текст " + callback_data.desc, reply_markup=close()
+            "Перевод ГС в текст " + callback_data.desc, reply_markup=settings.close()
         )
     await callback.answer()
 
@@ -46,7 +46,7 @@ async def process_toggle_voice(callback: CallbackQuery, callback_data: ToggleCal
 async def process_toggle_nsfw(callback: CallbackQuery, callback_data: ToggleCallback): 
     await main.db.set_nsfw(callback.message.chat.id, callback_data.status)
     await callback.message.edit_text(
-            "NSFW " + callback_data.desc, reply_markup=close()
+            "NSFW " + callback_data.desc, reply_markup=settings.close()
         )
     await callback.answer()
 
@@ -57,7 +57,7 @@ async def process_toggle_nsfw(callback: CallbackQuery, callback_data: ToggleCall
 async def processs_toggle_antiflood(callback: CallbackQuery, callback_data: ToggleCallback):
     await main.db.set_antiflood(callback.message.chat.id, callback_data.status)
     await callback.message.edit_text(
-            "Anti-Flood " + callback_data.desc, reply_markup=close()
+            "Anti-Flood " + callback_data.desc, reply_markup=settings.close()
             )
     await callback.answer()
 
