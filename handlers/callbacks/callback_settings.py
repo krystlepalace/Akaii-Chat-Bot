@@ -52,7 +52,7 @@ async def process_parameters1_callback(
 
 
 @router.callback_query(
-    SettingsCallback.filter(F.parameter.startswith("close")),
+    SettingsCallback.filter(F.parameter == "close"),
     group.IsAdminCallback(),
 )
 async def process_close_callback(callback: CallbackQuery, callback_data: CallbackData):
