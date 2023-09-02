@@ -94,17 +94,13 @@ def antiflood_inline() -> InlineKeyboardMarkup:
                 InlineKeyboardButton(
                     text="Включить",
                     callback_data=ToggleCallback(
-                        toggle="antiflood0", 
-                        status=True, 
-                        desc="включен."
+                        toggle="antiflood0", status=True, desc="включен."
                     ).pack(),
                 ),
                 InlineKeyboardButton(
                     text="Выключить",
                     callback_data=ToggleCallback(
-                        toggle="antiflood1", 
-                        status=False, 
-                        desc="выключен."
+                        toggle="antiflood1", status=False, desc="выключен."
                     ).pack(),
                 ),
             ]
@@ -114,42 +110,51 @@ def antiflood_inline() -> InlineKeyboardMarkup:
     return inline_kb_full
 
 
-def settings_inline(anim=True, 
-                    voice=True, 
-                    nsfw=True, 
-                    antiflood=False
-                    ) -> InlineKeyboardMarkup:
+def settings_inline(
+    anim=True, voice=True, nsfw=True, antiflood=False
+) -> InlineKeyboardMarkup:
     inline_kb_full = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="Анимированные стикеры: " + ("✅" if anim else "❌"),
                     callback_data=SettingsCallback(
-                        parameter="anim",
-                        keyboard="anim_kb",
-                        desc="анимированные стикеры"
-                        ).pack(),
+                        parameter="anim", desc="анимированные стикеры"
+                    ).pack(),
                 ),
             ],
             [
                 InlineKeyboardButton(
                     text="Перевод ГС в текст: " + ("✅" if voice else "❌"),
-                    callback_data="settings_voice",
+                    callback_data=SettingsCallback(
+                        parameter="voice", desc="перевод ГС в текст"
+                    ).pack(),
                 ),
             ],
             [
                 InlineKeyboardButton(
                     text="NSFW: " + ("✅" if nsfw else "❌"),
-                    callback_data="settings_nsfw",
+                    callback_data=SettingsCallback(
+                        parameter="nsfw", desc="NSFW"
+                    ).pack(),
                 )
             ],
             [
                 InlineKeyboardButton(
                     text="Anti-Flood: " + ("✅" if antiflood else "❌"),
-                    callback_data="settings_antiflood",
+                    callback_data=SettingsCallback(
+                        parameter="antiflood", desc="Anti-Flood"
+                    ).pack(),
                 ),
             ],
-            [InlineKeyboardButton(text="Закрыть", callback_data="settings_close")],
+            [
+                InlineKeyboardButton(
+                    text="Закрыть",
+                    callback_data=SettingsCallback(
+                        parameter="close", desc="Настройки закрыты"
+                    ).pack(),
+                )
+            ],
         ]
     )
 
