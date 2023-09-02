@@ -48,7 +48,7 @@ class AntiFloodMiddleware(BaseMiddleware):
             if check_user:
                 if int(check_user.decode()) < 7:
                     await self.storage.redis.set(
-                        name=user, value=check_user.decode() + 1, ex=2
+                        name=user, value=int(check_user.decode()) + 1, ex=2
                     )
                 else:
                     await event.reply(text="/mute 1")
