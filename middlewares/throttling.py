@@ -42,7 +42,7 @@ class AntiFloodMiddleware(BaseMiddleware):
         data: Dict[str, Any],
     ) -> Any:
         chat = await main.db.get_chat(event.chat.id)
-        if chat.get("antiflood"):
+        if (not chat is None) and chat.get("antiflood"):
             user = f"user{event.from_user.id}"
             check_user = await self.storage.redis.get(name=user)
             if check_user:
