@@ -5,6 +5,7 @@ from aiogram.types import ChatPermissions, Message, TelegramObject
 import main
 from datetime import datetime, timedelta
 
+
 class AntiFloodMiddleware(BaseMiddleware):
     def __init__(self, storage: RedisStorage):
         self.storage = storage
@@ -24,6 +25,8 @@ class AntiFloodMiddleware(BaseMiddleware):
                     await self.storage.redis.set(
                         name=user, value=int(check_user.decode()) + 1, ex=4
                     )
+                elif int(check_user.decode()) > 7:
+                    return
                 else:
                     permissions = ChatPermissions()
                     permissions.can_send_messages = False
