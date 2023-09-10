@@ -1,4 +1,4 @@
-# Akaii Telegram bot
+# FireBot
  A simple yet moderator-bot for Telegram chats with speech recognition, can translate voice messages to text.
 
 
