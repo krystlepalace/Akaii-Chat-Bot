@@ -18,9 +18,7 @@ class STT:
         self.recognizer = KaldiRecognizer(model, self.samplerate)
         self.recognizer.SetWords(True)
 
-    def audio_to_text(self, audiofile=None) -> str:
-        if audiofile is None:
-            raise Exception("Не указан путь к файлу")
+    def audio_to_text(self, audiofile) -> str:
         if not os.path.exists(audiofile):
             raise Exception("Указан неправильный путь к файлу")
 
